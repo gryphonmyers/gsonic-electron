@@ -1,0 +1,28 @@
+{
+  "name": "gsonic-electron",
+  "version": "1.0.0",
+  "description": "Electron app for gsonic subsonic client.",
+  "main": "main.js",
+  "scripts": {
+    "test": "tap test/*.js",
+    "start": "electron . --enable-logging"
+  },
+  "keywords": [
+    "gsonic",
+    "subsonic",
+    "electronic"
+  ],
+  "author": "Gryphon Myers",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^4.0.3"
+  },
+  "dependencies": {
+    "node-hook": "^1.0.0",
+    "node-localstorage": "^1.3.1",
+    "postcss": "^7.0.14",
+    "postcss-cssnext": "^3.1.0",
+    "postcss-preset-env": "^6.5.0",
+    "pug-vdom": "^1.0.10"
+  }
+}

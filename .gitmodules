@@ -1,0 +1,3 @@
+[submodule "gsonic"]
+	path = gsonic
+	url = git@github.com:gryphonmyers/gsonic.git
