@@ -5,7 +5,10 @@
   "main": "main.js",
   "scripts": {
     "test": "tap test/*.js",
-    "start": "electron . --enable-logging"
+    "start": "electron . --enable-logging",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder",
+    "postinstall": "electron-builder install-app-deps"
   },
   "keywords": [
     "gsonic",
@@ -15,7 +18,8 @@
   "author": "Gryphon Myers",
   "license": "MIT",
   "devDependencies": {
-    "electron": "^4.0.3"
+    "electron": "^4.0.3",
+    "electron-builder": "^20.38.5"
   },
   "dependencies": {
     "node-hook": "^1.0.0",
@@ -24,5 +28,11 @@
     "postcss-cssnext": "^3.1.0",
     "postcss-preset-env": "^6.5.0",
     "pug-vdom": "^1.0.10"
+  },
+  "build": {
+    "appId": "com.electron.gsonic-electron",
+    "win": {
+      "target": "nsis"
+    }
   }
 }
