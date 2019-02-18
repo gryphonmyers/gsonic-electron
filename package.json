@@ -8,7 +8,7 @@
     "start": "electron . --enable-logging",
     "pack": "electron-builder --dir",
     "dist": "electron-builder",
-    "postinstall": "electron-builder install-app-deps && cd gsonic && npm install"
+    "postinstall": "electron-builder install-app-deps"
   },
   "keywords": [
     "gsonic",
