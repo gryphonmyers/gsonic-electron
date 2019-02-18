@@ -1,9 +1,8 @@
-// This file is required by the index.html file and will
-// be executed in the renderer process for that window.
-// All of the Node.js APIs are available in this process.
 const hook = require('node-hook');
 const pugVDOM = require('pug-vdom');
 const postcss = require('postcss');
+const path = require('path');
+const defaults = require('defaults-es6');
 var cssnext = require("postcss-cssnext");
 
 hook.hook('.css', function(source, filename){
@@ -18,10 +17,40 @@ hook.hook('.pug', function(source, filename){
     return result;
 });
 
-var app = require('./gsonic');
+// hook.hook('.js', function(source, filename) {
+//     if (path.parse(filename).name === 'subsonic-interface') {
+//         console.log(eval(source))
+//     }
 
-app.on('patch', () => {
-    console.log('patched gsonic');
-})
+//     return source;
+// });
+
+var App = require('./gsonic/node_modules/weddell').classes.App;
+
+var app = new App({
+    routes: require('./gsonic/src/scripts/routes'),
+    el: '#app',
+    Component: Component => class extends require('./gsonic/src/components/root')(Component) {
+        static get SubsonicMusicLibraryInterface() {
+            console.log("extending interface");
+            return super.SubsonicMusicLibraryInterface;
+        }
+
+        static get components() {
+            return defaults({
+                'player': Component => class extends super.components.player(Component) {
+                    
+                }
+            }, super.components);
+        }
+    },
+    renderInterval: 16.667
+});
+
+// var app = require('./gsonic');
+
+// app.on('patch', () => {
+//     console.log('patched gsonic');
+// })
 
 app.init({initialPath: '/'});
